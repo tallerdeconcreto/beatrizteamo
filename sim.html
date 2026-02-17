@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .big-heart {
+            font-size: 6rem;
+            animation: heartbeat 0.8s infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.2); }
+        }
+
+        h1 {
+            color: #e74c3c;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .emoji-rain {
+            position: fixed;
+            top: -50px;
+            font-size: 2rem;
+            animation: fall linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+            }
+        }
+
+        .btn-voltar {
+            margin-top: 30px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-voltar:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="big-heart">💕</div>
+        <h1>Obrigado por ter aparecido do nada</h1>
+        <p>foi incrivel ter cohecido vc, sinto que isso é só o começo.
+        
+        </p>
+        <p style="font-size: 1.2rem; color: #666;"></p>
+        <a href="index.html" class="btn-voltar">dnv mas tenta clica no não</a>
+    </div>
+
+    <script>
+        const emojis = ['❤️', '💕', '💖', '💗', '💓', '💞', '💘', '🥰', '😍', '💑'];
+        
+        function createEmojiRain() {
+            const emoji = document.createElement('span');
+            emoji.className = 'emoji-rain';
+            emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * 100 + 'vw';
+            emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(emoji);
+
+            setTimeout(() => emoji.remove(), 5000);
+        }
+
+        setInterval(createEmojiRain, 200);
+
+        // Criar alguns imediatamente
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createEmojiRain, i * 50);
+        }
+    </script>
+</body>
+</html>
